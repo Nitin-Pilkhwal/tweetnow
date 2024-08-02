@@ -11,7 +11,9 @@
     <div class="container row gap-3">
         {% for tweet in tweets %}
         <div class="card" style="width: 18rem;">
-            <img src="{{tweet.photo.url}}" class="card-img-top my-2" alt="...">
+          {% if tweet.photo.url != NULL %}
+          <img src="{{tweet.photo.url}}" class="card-img-top my-2" alt="...">
+          {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{tweet.user.username}}</h5>
               <p class="card-text">{{tweet.text}}</p>
