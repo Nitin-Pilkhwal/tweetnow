@@ -1,0 +1,29 @@
+{
+    "name": "tweethq",
+    "version": 2,
+    "builds": [
+        {
+        "src": "tweethq/wsgi.py",
+        "use": "@vercel/node",
+        "config": { 
+            "maxLambdaSize": "15mb" ,
+            "runtime" : "python3.9",
+            "buildCommand" : "bash setup.sh"
+        }
+        }
+    ],
+    "routes": [
+        {
+        "src": "/(.*)",
+        "dest": "tweethq/wsgi.py"
+        },
+        {
+        "src": "/static/(.*)",
+        "dest": "static/$1"
+        },
+        {
+        "src": "/media/(.*)",
+        "dest": "media/$1"
+        }
+    ]
+}
