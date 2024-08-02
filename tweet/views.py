@@ -10,9 +10,6 @@ def index(request):
 
 def tweet_list(request):
     tweets = Tweet.objects.all().order_by('-created_at')
-    for tweet in tweets:
-        if not tweet.photo:
-            tweet.photo = None
     return render(request, 'tweet_list.html', {'tweets': tweets})
 
 @login_required
@@ -38,8 +35,8 @@ def tweet_edit(request,tweet_id):
     if request.method == 'POST':
         form = TweetForm(request.POST, request.FILES, instance=tweet)
         if form.is_valid():
-            # tweet = form.save(commit=True) copilot suggested this line to handle integrity eror
-            # tweet.user = request.user
+            tweet = form.save(commit=False)
+            tweet.user = request.user
             tweet.save()
             return redirect('tweet_list')
     # when the form is requested for the first time
@@ -61,7 +58,7 @@ def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=True)
+            user = form.save(commit=False)
             user.set_password(form.cleaned_data['password1'])
             user.save()
             login(request, user)
