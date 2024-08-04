@@ -94,7 +94,7 @@ Contributions are welcome! Please follow these steps:
 
 ## Contact
 
-Your Name - [Your Email](mailto:youremail@example.com)
+Your Name - [Your Email](1nasty.np@gmail.com)
 
 ---
 
